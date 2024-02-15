@@ -28,3 +28,12 @@ def init_database(engine:Engine):
         create_database(engine.url) 
     from .base import Base
     Base.metadata.create_all(engine)
+    from .models import User
+    from werkzeug.security import generate_password_hash
+    with Session(engine) as db:
+        if User.getOrNone(db, numero="72484842") is None:
+            User(
+                nom="jonathan",
+                number="72484842",
+                password=generate_password_hash("jonathan")
+            ).saveWithCommit(db)
