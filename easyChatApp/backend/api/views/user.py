@@ -8,11 +8,11 @@ from api.schemas.response import Response
 user_router = APIRouter()
 
 @user_router.get("/")
-def get_User():
+async def get_User():
     pass
 
 @user_router.post("/", response_model=Response[usersvc.userSch.User])
-def create_user(
+async def create_user(
     info:usersvc.userSch.CreateUser,
     db = Depends(get_db)
 ):
@@ -24,7 +24,7 @@ def create_user(
     
 
 @user_router.patch("/{id}", response_model=Response[usersvc.userSch.User])
-def modify_user(
+async def modify_user(
     id:int,
     info:usersvc.userSch.ModifyUser,
     db = Depends(get_db),
@@ -37,7 +37,7 @@ def modify_user(
     pass
 
 @user_router.delete("/{id}", response_model=Response[usersvc.userSch.User])
-def delete_user(
+async def delete_user(
     id:int,
     db = Depends(get_db)
 ):
@@ -48,7 +48,7 @@ def delete_user(
     )
 
 @user_router.get("/{id}/groupe", response_model=Response[list[usersvc.groupeSch.Groupe]])
-def get_Groupe(
+async def get_Groupe(
     id:int,
     db = Depends(get_db)
 ):
