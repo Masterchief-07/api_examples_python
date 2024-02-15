@@ -1,15 +1,16 @@
 from fastapi import FastAPI
 
 def createAPP() -> FastAPI:
-    from api.views import hello_route, healthcheck_router, example_router
+    from api.views import login_router, user_router, groupe_router, healthcheck_router
     app = FastAPI(
         title = "backend_template",
         description = "template for future projects",
     )
 
     #adding endpoints
-    app.include_router(hello_route, prefix="/api/v1/hello")
-    app.include_router(example_router, prefix="/api/v1/example")
+    app.include_router(login_router, prefix="/api/v1/login")
+    app.include_router(user_router, prefix="/api/v1/user")
+    app.include_router(groupe_router, prefix="/api/v1/groupe")
     app.include_router(healthcheck_router, prefix="/api/v1/healthcheck")
 
     #adding middlewares

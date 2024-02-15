@@ -8,7 +8,7 @@ from api.schemas.response import Response
 groupe_router = APIRouter()
 
 @groupe_router.get("/")
-async def get_User():
+async def get_groupe():
     pass
 
 @groupe_router.post("/", response_model=Response[groupesvc.groupeSch.Groupe])
@@ -20,7 +20,8 @@ async def create_groupe(
     result = groupesvc.create_groupe(db, user_id, info)
     return Response(
         status=201,
-        message=result
+        message = "groupe created",
+        data=result
     )
     
 
@@ -34,7 +35,8 @@ async def modify_groupe(
     result = groupesvc.modify_groupe(db, user_id,groupe_id, info)
     return Response(
         status=200,
-        message=result
+        message = "groupe modified",
+        data=result
     )
     pass
 
@@ -47,7 +49,8 @@ async def delete_groupe(
     result = groupesvc.delete_groupe(db, user_id, groupe_id)
     return Response(
         status=200,
-        message=result
+        message = "groupe deleted",
+        data=result
     )
 
 @groupe_router.get("/{id}/users", response_model=Response[list[groupesvc.userSch.User]])
@@ -57,6 +60,7 @@ async def get_users(
 ):
     result = groupesvc.get_users_in_groupe(db, id)
     return Response(
-        status=201,
-        message=result
+        status=200,
+        message = "groupe users",
+        data=result
     )

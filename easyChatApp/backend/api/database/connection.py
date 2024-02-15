@@ -31,7 +31,7 @@ def init_database(engine:Engine):
     from .models import User
     from werkzeug.security import generate_password_hash
     with Session(engine) as db:
-        if User.getOrNone(db, numero="72484842") is None:
+        if User.getOrNone(db, number="72484842") is None:
             User(
                 nom="jonathan",
                 number="72484842",

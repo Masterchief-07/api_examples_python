@@ -19,7 +19,8 @@ async def create_user(
     result = usersvc.create_user(db, info)
     return Response(
         status=201,
-        message=result
+        message="user created",
+        data=result
     )
     
 
@@ -32,7 +33,8 @@ async def modify_user(
     result = usersvc.modify_user(db, id, info)
     return Response(
         status=200,
-        message=result
+        message="user modified",
+        data=result
     )
     pass
 
@@ -44,7 +46,8 @@ async def delete_user(
     result = usersvc.delete_user(db, id)
     return Response(
         status=200,
-        message=result
+        message="user deleted",
+        data=result
     )
 
 @user_router.get("/{id}/groupe", response_model=Response[list[usersvc.groupeSch.Groupe]])
@@ -54,6 +57,7 @@ async def get_Groupe(
 ):
     result = usersvc.get_groupes_where_user(db, id)
     return Response(
-        status=201,
-        message=result
+        status=200,
+        message="user groupes",
+        data=result
     )

@@ -30,7 +30,7 @@ class Groupe(Base, BaseTemplate):
     )
     title: Mapped[str] = mapped_column(VARCHAR(50), init=True, nullable=False)
     description: Mapped[str] = mapped_column(VARCHAR(255), init=True, nullable=False)
-    created_by: Mapped[int] = mapped_column(UnsignedInt, ForeignKey("user.id", onupdate="CASCADE", ondelete="SET NULL"), nullable=False)
+    created_by: Mapped[int] = mapped_column(UnsignedInt, ForeignKey("user.id", onupdate="CASCADE", ondelete="SET NULL"), nullable=True)
 
 
 class Message(Base, BaseTemplate):

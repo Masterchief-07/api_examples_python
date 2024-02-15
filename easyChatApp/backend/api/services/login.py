@@ -1,7 +1,8 @@
 from fastapi import HTTPException
 from api.database import User, Session
-from jwt import PyJWT
+import jwt
 from werkzeug.security import check_password_hash
+from api.config import Setting
 
 ERROR_MSG = "number or password are invalid"
 
@@ -13,7 +14,11 @@ def login(number, password, db:Session) -> str:
             "id":user.id,
             "exp":None
         }
-        jwt_token = PyJWT().encode(payload)
+        jwt_token = jwt.encode(
+            payload=payload,
+            key=Setting.JWT_SECRET,
+            # algorithm=Setting.JWT_ALGORITHM,
+        )
         return jwt_token
 
     raise HTTPException(
