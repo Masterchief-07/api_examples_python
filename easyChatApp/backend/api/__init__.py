@@ -1,16 +1,17 @@
 from fastapi import FastAPI
 
 def createAPP() -> FastAPI:
-    from api.views import login_router, user_router, groupe_router, healthcheck_router
+    from api.views import login_router, user_router, groupe_router, healthcheck_router, chat_router
     app = FastAPI(
-        title = "backend_template",
-        description = "template for future projects",
+        title = "EASYCHATAPP",
+        description = "CHAT APPLICATION",
     )
 
     #adding endpoints
     app.include_router(login_router, prefix="/api/v1/login")
     app.include_router(user_router, prefix="/api/v1/user")
     app.include_router(groupe_router, prefix="/api/v1/groupe")
+    app.include_router(chat_router, prefix="/api/v1/chat")
     app.include_router(healthcheck_router, prefix="/api/v1/healthcheck")
 
     #adding middlewares
